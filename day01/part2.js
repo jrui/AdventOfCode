@@ -1,11 +1,9 @@
 import { readFileSync } from 'fs';
 
 
-function isNumber(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-}
-
-function convertTextNumberToNumber(n) {
+function convertStringToNumber(n) {
+    // This is a terrible way to do this, but it works.
+    // Remove all unused letters, and replace all words with numbers.
     return n
         .replaceAll('one', '1')
         .replaceAll('two', '2')
@@ -16,41 +14,17 @@ function convertTextNumberToNumber(n) {
         .replaceAll('seven', '7')
         .replaceAll('eight', '8')
         .replaceAll('nine', '9')
-        .replaceAll('zero', '0');
+        .replaceAll(/\D/g,'');
 }
 
 function run() {
     const lines = readFileSync('./day01/input/input2.txt', 'utf-8').split('\n');
     const normalizedLines = lines.map(line => {
-        let newLine = convertTextNumberToNumber(line);
-        if (newLine !== line) {
-            // console.log(`Converted "${line}" to "${newLine}"`);
-        }
-        return newLine;
-    });
-    let sum = 0;
-
-    normalizedLines.forEach(line => {
-        let firstNumber = '';
-        for(let i = 0; i < line.length; i++) {
-            if(isNumber(line[i])) {
-                firstNumber = line[i];
-                break;
-            }
-        }
-
-        let lastNumber = '';
-        for(let i = line.length - 1; i >= 0; i--) {
-            if(isNumber(line[i])) {
-                lastNumber = line[i];
-                break;
-            }
-        }
-
-        sum += parseInt(firstNumber + lastNumber);
+        const newLine = convertStringToNumber(line);
+        return Number.parseInt(newLine[0] + newLine[newLine.length - 1]);
     });
 
-    return sum;
+    return normalizedLines.reduce((prev, curr) => prev + curr, 0);
 }
 
 export default run;
