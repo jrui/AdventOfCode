@@ -20,6 +20,7 @@
   "homepage": "https://github.com/CaptainJRoy/AoC23#readme",
   "dependencies": {
     "day01": "file:day01",
+    "day02": "file:day02",
     "fs": "*",
     "path": "^0.12.7",
     "process": "^0.11.10"
