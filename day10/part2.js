@@ -31,7 +31,7 @@ function rewritePrettyFile() {
 
 function rewritePrettyFileNoTrash() {
     // reduces noise by taking out all the points that are not part of the path
-    const lines = readFileSync('./day10/input/input2_pretty.txt', 'utf-8').split('\n')
+    const lines = readFileSync('./day10/input/input2_pretty_no_trash_iter3.txt', 'utf-8').split('\n')
     const lineMatrix = lines.map(line => line.split(''));
 
     // finding initial coordinates
@@ -124,7 +124,7 @@ function rewritePrettyFileNoTrash() {
         }).join('');
     });
 
-    writeFileSync('./day10/input/input2_pretty_no_trash.txt', prettyLines.join('\n'));
+    writeFileSync('./day10/input/input2_pretty_no_trash_iter3.txt', prettyLines.join('\n'));
 }
 
 
@@ -174,10 +174,12 @@ function rightIsOutside(lineMatrix, x, y) {
 
 
 function run() {
-    const lines = readFileSync('./day10/input/input2_pretty_no_trash.txt', 'utf-8').split('\n');
+    // rewritePrettyFile()    
+    // If left uncommented, any cuts made in input2_pretty_no_trash_iter3.txt will be kept and iterated on
+    rewritePrettyFileNoTrash();
+
+    const lines = readFileSync('./day10/input/input2_pretty_no_trash_iter3.txt', 'utf-8').split('\n');
     const lineMatrix = lines.map(line => line.split(''));
-    // rewritePrettyFile()
-    // rewritePrettyFileNoTrash();
 
     for (let j = 0; j < 100; j++) {
         // iterate from up to down, left to right
@@ -334,7 +336,7 @@ function run() {
         }
     }
 
-    writeFileSync('./day10/input/input2_pretty_iter3.txt', lineMatrix.map(line => line.join('')).join('\n'));
+    writeFileSync('./day10/input/input2_pretty_no_trash_iter3.txt', lineMatrix.map(line => line.join('')).join('\n'));
 
     return 0;
 }
