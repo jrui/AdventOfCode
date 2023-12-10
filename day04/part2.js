@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 
 
 function run() {
-    const lines = readFileSync('./day04/input/input1.txt', 'utf-8').split('\n');
+    const lines = readFileSync('./day04/input/input2.txt', 'utf-8').split('\n');
     const ORIGINAL_SCRATCHCARD_COUNT = lines.length;
 
     let scratchcards = {};
