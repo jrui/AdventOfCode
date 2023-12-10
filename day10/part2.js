@@ -183,7 +183,7 @@ function run() {
         // iterate from up to down, left to right
         for (let y = 0; y < lineMatrix.length; y++) {
             for (let x = 0; x < lineMatrix[y].length; x++) {
-                if (lineMatrix[y][x] === '┌' && lineMatrix[y][x+1] === '┐' && upIsOutside(lineMatrix, x, y) && upIsOutside(lineMatrix, x+1, y)) {
+                if (lineMatrix[y][x] === '┌' && lineMatrix[y][x+1] === '┐' && (upIsOutside(lineMatrix, x, y) || upIsOutside(lineMatrix, x+1, y) || leftIsOutside(lineMatrix, x, y))) {
                     if (lineMatrix[y+1][x] === '│' && lineMatrix[y+1][x+1] === '│') {
                         lineMatrix[y][x] = '.';
                         lineMatrix[y][x+1] = '.';
@@ -206,13 +206,50 @@ function run() {
                         lineMatrix[y+1][x+1] = '─';
                     }
                 }
+
+                if (lineMatrix[y][x] === '┌' && lineMatrix[y][x+1] === '─' && lineMatrix[y][x+2] === '┐' && (upIsOutside(lineMatrix, x, y) || upIsOutside(lineMatrix, x+1, y) || upIsOutside(lineMatrix, x+2, y) || leftIsOutside(lineMatrix, x, y))) {
+                    // ┌─┐
+                    if (lineMatrix[y+1][x] === '└' && lineMatrix[y+1][x+1] === '┐' && lineMatrix[y+1][x+2] === '│') {
+                        // └┐│
+                        lineMatrix[y][x] = '.';
+                        lineMatrix[y][x+1] = '.';
+                        lineMatrix[y][x+2] = '.';
+                        lineMatrix[y+1][x] = '.';
+                        lineMatrix[y+1][x+1] = '┌';
+                        lineMatrix[y+1][x+2] = '┐';
+                    } else if (lineMatrix[y+1][x] === '┘' && lineMatrix[y+1][x+1] === '┌' && lineMatrix[y+1][x+2] === '┘') {
+                        // ┘┌┘
+                        lineMatrix[y][x] = '.';
+                        lineMatrix[y][x+1] = '.';
+                        lineMatrix[y][x+2] = '.';
+                        lineMatrix[y+1][x] = '─';
+                        lineMatrix[y+1][x+1] = '┐';
+                        lineMatrix[y+1][x+2] = '.';
+                    } else if(lineMatrix[y+1][x] === '└' && lineMatrix[y+1][x+1] === '┐' && lineMatrix[y+1][x+2] === '└') {
+                        // └┐└
+                        lineMatrix[y][x] = '.';
+                        lineMatrix[y][x+1] = '.';
+                        lineMatrix[y][x+2] = '.';
+                        lineMatrix[y+1][x] = '.';
+                        lineMatrix[y+1][x+1] = '┌';
+                        lineMatrix[y+1][x+2] = '─';
+                    } else if (lineMatrix[y+1][x] === '│' && lineMatrix[y+1][x+1] === '┌' && lineMatrix[y+1][x+2] === '┘') {
+                        // │┌┘
+                        lineMatrix[y][x] = '.';
+                        lineMatrix[y][x+1] = '.';
+                        lineMatrix[y][x+2] = '.';
+                        lineMatrix[y+1][x] = '┌';
+                        lineMatrix[y+1][x+1] = '┐';
+                        lineMatrix[y+1][x+2] = '.';
+                    }
+                }
             }
         }
 
         // iterate from left to right, up to down
         for (let x = 0; x < lineMatrix[0].length; x++) {
             for (let y = 0; y < lineMatrix.length; y++) {
-                if (lineMatrix[y][x] === '┌' && lineMatrix[y+1][x] === '└'  && leftIsOutside(lineMatrix, x, y) && leftIsOutside(lineMatrix, x, y+1)) {
+                if (lineMatrix[y][x] === '┌' && lineMatrix[y+1][x] === '└'  && (leftIsOutside(lineMatrix, x, y) || leftIsOutside(lineMatrix, x, y+1) || upIsOutside(lineMatrix, x, y))) {
                     if (lineMatrix[y][x+1] === '─' && lineMatrix[y+1][x+1] === '─') {
                         lineMatrix[y][x] = '.';
                         lineMatrix[y+1][x] = '.';
@@ -241,7 +278,7 @@ function run() {
         // iterate from down to up, left to right
         for (let y = lineMatrix.length - 1; y > 0; y--) {
             for (let x = 0; x < lineMatrix[y].length; x++) {
-                if (lineMatrix[y][x] === '└' && lineMatrix[y][x+1] === '┘' && downIsOutside(lineMatrix, x, y) && downIsOutside(lineMatrix, x+1, y)) {
+                if (lineMatrix[y][x] === '└' && lineMatrix[y][x+1] === '┘' && (downIsOutside(lineMatrix, x, y) || downIsOutside(lineMatrix, x+1, y) || leftIsOutside(lineMatrix, x, y))) {
                     if (lineMatrix[y-1][x] === '│' && lineMatrix[y-1][x+1] === '│') {
                         lineMatrix[y][x] = '.';
                         lineMatrix[y][x+1] = '.';
@@ -270,7 +307,7 @@ function run() {
         // iterate from right to left, up to down
         for (let x = lineMatrix[0].length - 1; x > 0; x--) {
             for (let y = 0; y < lineMatrix.length; y++) {
-                if (lineMatrix[y][x] === '┐' && lineMatrix[y+1][x] === '┘' && rightIsOutside(lineMatrix, x, y) && rightIsOutside(lineMatrix, x, y+1)) {
+                if (lineMatrix[y][x] === '┐' && lineMatrix[y+1][x] === '┘' && (rightIsOutside(lineMatrix, x, y) || rightIsOutside(lineMatrix, x, y+1) || upIsOutside(lineMatrix, x, y))) {
                     if (lineMatrix[y][x-1] === '─' && lineMatrix[y+1][x-1] === '─') {
                         lineMatrix[y][x] = '.';
                         lineMatrix[y+1][x] = '.';
@@ -297,7 +334,7 @@ function run() {
         }
     }
 
-    writeFileSync('./day10/input/input2_pretty_iter2.txt', lineMatrix.map(line => line.join('')).join('\n'));
+    writeFileSync('./day10/input/input2_pretty_iter3.txt', lineMatrix.map(line => line.join('')).join('\n'));
 
     return 0;
 }
