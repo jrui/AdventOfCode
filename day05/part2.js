@@ -73,62 +73,83 @@ function run() {
     const temperatureToHumidityMap = normalizeMap(temperatureToHumidityMapString, 'temperature', 'humidity');
     const humidityToLocationMap = normalizeMap(humidityToLocationMapString, 'humidity', 'location');
     
+    let processedSeeds = 0;
+    let currentMin = Number.MAX_VALUE;
 
-    const foundSeedSoilRelation = seedArray
-        .map(seed => findRelationMapping(
+    let seedId = 2989476473;
+    let quantity = 58874625;
+    let startTime = Date.now();
+
+    for (let j = 0; j < quantity; j++) {
+        const foundSeedSoilRelation = [findRelationMapping(
             seedToSoilMap,
-            seed,
+            seedId + j,
             'seed',
             'soil'
-        ));    
-    const foundSoilFertilizerRelation = foundSeedSoilRelation
-        .map(soil => findRelationMapping(
-            soilToFertilizerMap,
-            soil.soil_start + soil.seed_shift,
-            'soil',
-            'fertilizer'
-        ));
-    const foundFertilizerWaterRelation = foundSoilFertilizerRelation
-        .map(fertilizer => findRelationMapping(
-            fertilizerToWaterMap, 
-            fertilizer.fertilizer_start + fertilizer.soil_shift,
-            'fertilizer',
-            'water'
-        ));
-    const foundWaterLightRelation = foundFertilizerWaterRelation
-        .map(water => findRelationMapping(
-            waterToLightMap,
-            water.water_start + water.fertilizer_shift,
-            'water',
-            'light'
-        ));
-    const foundLightTemperatureRelation = foundWaterLightRelation
-        .map(light => findRelationMapping(
-            lightToTemperatureMap,
-            light.light_start + light.water_shift,
-            'light',
-            'temperature'
-        ));
-    const foundTemperatureHumidityRelation = foundLightTemperatureRelation
-        .map(temperature => findRelationMapping(
-            temperatureToHumidityMap,
-            temperature.temperature_start + temperature.light_shift,
-            'temperature',
-            'humidity'
-        ));
-    const foundHumidityLocationRelation = foundTemperatureHumidityRelation
-        .map(humidity => findRelationMapping(
-            humidityToLocationMap,
-            humidity.humidity_start + humidity.temperature_shift,
-            'humidity',
-            'location'
-        ));
+        )];    
+        const foundSoilFertilizerRelation = foundSeedSoilRelation
+            .map(soil => findRelationMapping(
+                soilToFertilizerMap,
+                soil.soil_start + soil.seed_shift,
+                'soil',
+                'fertilizer'
+            ));
+        const foundFertilizerWaterRelation = foundSoilFertilizerRelation
+            .map(fertilizer => findRelationMapping(
+                fertilizerToWaterMap, 
+                fertilizer.fertilizer_start + fertilizer.soil_shift,
+                'fertilizer',
+                'water'
+            ));
+        const foundWaterLightRelation = foundFertilizerWaterRelation
+            .map(water => findRelationMapping(
+                waterToLightMap,
+                water.water_start + water.fertilizer_shift,
+                'water',
+                'light'
+            ));
+        const foundLightTemperatureRelation = foundWaterLightRelation
+            .map(light => findRelationMapping(
+                lightToTemperatureMap,
+                light.light_start + light.water_shift,
+                'light',
+                'temperature'
+            ));
+        const foundTemperatureHumidityRelation = foundLightTemperatureRelation
+            .map(temperature => findRelationMapping(
+                temperatureToHumidityMap,
+                temperature.temperature_start + temperature.light_shift,
+                'temperature',
+                'humidity'
+            ));
+        const foundHumidityLocationRelation = foundTemperatureHumidityRelation
+            .map(humidity => findRelationMapping(
+                humidityToLocationMap,
+                humidity.humidity_start + humidity.temperature_shift,
+                'humidity',
+                'location'
+            ));
 
-    const altitude = foundHumidityLocationRelation.map(relation => {
-        return relation.location_start += relation.humidity_shift;
-    });
+        const altitude = foundHumidityLocationRelation.map(relation => {
+            return relation.location_start += relation.humidity_shift;
+        });
 
-    return Math.min(... altitude);
+        if (Math.min(... altitude) < currentMin) {
+            currentMin = Math.min(... altitude);
+        }
+        processedSeeds++;
+
+        if (processedSeeds % 500000 === 0) {
+            console.log('Starting seed: ', seedId);
+            console.log('Processed seeds: ', processedSeeds);
+            console.log('Current min: ', currentMin);
+            console.log('Seeds remaining: ', quantity - processedSeeds);
+            console.log('Time elapsed: ', Math.floor((Date.now() - startTime) / 1000), ' seconds');
+            console.log('\n');
+        }
+    }
+    
+    return currentMin;
 }
 
 export default run;
