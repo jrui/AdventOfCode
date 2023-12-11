@@ -27,6 +27,7 @@
     "day06": "file:day06",
     "day09": "file:day09",
     "day10": "file:day10",
+    "day11": "file:day11",
     "fs": "*",
     "path": "^0.12.7",
     "process": "^0.11.10"
