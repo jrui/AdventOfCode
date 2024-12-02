@@ -1,0 +1,20 @@
+{
+  "name": "day04",
+  "version": "1.0.0",
+  "description": "",
+  "main": "task1.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "s:1": "npx tsc && npx ts-node task1.ts",
+    "s:2": "npx tsc && npx ts-node task2.ts"
+  },
+  "author": "CaptainJRoy",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.11.10"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "ts-node": "^10.9.1"
+  }
+}

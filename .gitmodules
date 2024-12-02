@@ -1,0 +1,12 @@
+[submodule "2022/automation/advent-of-code-2"]
+	path = 2022/automation/advent-of-code-2
+	url = git@github.com:teivah/advent-of-code.git
+[submodule "2022/automation/AdventOfCode"]
+	path = 2022/automation/AdventOfCode
+	url = git@github.com:jonathanpaulson/AdventOfCode.git
+[submodule "2022/automation/advent-of-code-solutions"]
+	path = 2022/automation/advent-of-code-solutions
+	url = git@github.com:erikw/advent-of-code-solutions.git
+[submodule "2022/automation/advent-of-code"]
+	path = 2022/automation/advent-of-code
+	url = git@github.com:TenViki/advent-of-code.git
