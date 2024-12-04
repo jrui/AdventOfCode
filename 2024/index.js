@@ -20,9 +20,11 @@ if (!dir.includes(`day${day.length === 1 ? '0' + day : day}`)) {
 }
 else {
     const dayPath = path.join(`./day${day.length === 1 ? '0' + day : day}/index.js`);
-    console.log(`Running day ${day}...`);
+    console.log(`Running day ${day} ...`);
+    let startTime = Date.now();
     import(dayPath).then(dayRun => {
-        console.log(dayRun.part1());
-        console.log(dayRun.part2());
+        console.log('Part 1:', dayRun.part1());
+        console.log('Part 2:', dayRun.part2());
+        console.log('Took:', (Date.now() - startTime) / 1000, 'seconds');
     });
 }
