@@ -99,6 +99,7 @@ __To start coding:__
 
 
 Considering:
-:black_square_button: - Not solved   
-:ballot_box_with_check: - Part 1 solved
-:white_check_mark: - Part 1 and 2 solved
+
+- :black_square_button: Not solved
+- :ballot_box_with_check: Part 1 solved
+- :white_check_mark: Part 1 and 2 solved
