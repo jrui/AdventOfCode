@@ -18,8 +18,8 @@ __To start coding:__
 - :white_check_mark: - __Day 2__ - Red-Nosed Reports
 - :white_check_mark: - __Day 3__ - Mull It Over
 - :white_check_mark: - __Day 4__ - Ceres Search
-- :black_square_button: - __Day 5__ -
-- :black_square_button: - __Day 6__ -
+- :black_square_button: - __Day 5__ - Print Queue
+- :white_check_mark: - __Day 6__ - Guard Gallivant
 - :black_square_button: - __Day 7__ -
 - :black_square_button: - __Day 8__ -
 - :black_square_button: - __Day 9__ -
