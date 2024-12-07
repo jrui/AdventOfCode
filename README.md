@@ -20,7 +20,7 @@ __To start coding:__
 - :white_check_mark: - __Day 4__ - Ceres Search
 - :black_square_button: - __Day 5__ - Print Queue
 - :white_check_mark: - __Day 6__ - Guard Gallivant
-- :black_square_button: - __Day 7__ -
+- :white_check_mark: - __Day 7__ - Bridge Repair
 - :black_square_button: - __Day 8__ -
 - :black_square_button: - __Day 9__ -
 - :black_square_button: - __Day 10__ -
