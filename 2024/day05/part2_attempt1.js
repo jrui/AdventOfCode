@@ -4,7 +4,6 @@ import { readFileSync } from 'fs';
 // { x1 : [y1, y2, y3] }
 let printingOrder = {};
 let FILENAME = './day05/input/input2.txt';
-let fixedRecords = {};
 
 
 // a, b like x|y
@@ -72,42 +71,45 @@ function getInvalidRecords() {
 }
 
 
+function factorial(n) {
+    let rval = 1;
+    for (let i = 2; i <= n; i++)
+        rval = rval * i;
+    return rval;
+}
+
+
+function permutations(array) {
+    if (!array.length) return [[]];
+    return array.flatMap(x => {
+        // get permutations of array without x, then prepend x to each
+        return permutations(
+                array.filter(v => v !== x)
+            ).map(vs => [x, ...vs])
+    });      
+}
+
+
 // don't think brute force will work on this one.. have to think of a clever approach
 function run() {
     const invalidRecords = getInvalidRecords();
 
-    let newRecords = invalidRecords.map(record => {
-        let originalRecord = record.map(r => r);
-        let newRecord = [ record.pop() ];
+    console.log(printingOrder);
 
-        while (record.length > 0) {
-            let inserting = record.pop();
+    let permutationsArr = invalidRecords.map(record => {
+        console.log(`Processing record ${record} of ${invalidRecords.length}, possible permutations: ${factorial(record.length)}`);
+        let validPermutation = permutations(record).filter(p => isValidOrder(p))[0];
+        console.log(`Valid permutation found ${validPermutation}\n`);
 
-            for (let i = 0; i < newRecord.length; i++) {
-                let attempt1 = newRecord.slice(0, i + 1).concat(inserting).concat(newRecord.slice(i + 1));
-                let attempt2 = newRecord.slice(0, i).concat(inserting).concat(newRecord.slice(i))
-
-                // console.log(isValidOrder(attempt1) ? `${'attempt1 '+  attempt1}` : `${'attempt2 ' + attempt2}`);
-
-                if (isValidOrder(attempt1)) {
-                    newRecord = attempt1
-                    break;
-                }
-                else if (isValidOrder(attempt2)) {
-                    newRecord = attempt2
-                    break;
-                }
-            }
-        }
-
-        fixedRecords[originalRecord] = newRecord;
-        return newRecord
+        return validPermutation;
     });
 
-    // console.log('out of', invalidRecords.length, 'we have fixed', Object.keys(fixedRecords).length);
-    return newRecords
-        .map(r => r[Math.floor(r.length / 2)])
-        .reduce((acc, curr) => acc + curr, 0);
+    let middleElementSum = 0;
+    permutationsArr.forEach(permutation => {
+        middleElementSum += permutation[Math.floor(permutation.length / 2)];
+    });
+
+    return middleElementSum;
 }
 
 export default run;
