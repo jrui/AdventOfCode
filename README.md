@@ -23,7 +23,7 @@ __To start coding:__
 - :white_check_mark: - __Day 7__ - Bridge Repair
 - :white_check_mark: - __Day 8__ - Resonant Collinearity
 - :white_check_mark: - __Day 9__ - Disk Fragmenter
-- :black_square_button: - __Day 10__ -
+- :white_check_mark: - __Day 10__ - Hoof It
 - :black_square_button: - __Day 11__ -
 - :black_square_button: - __Day 12__ -
 - :black_square_button: - __Day 13__ -

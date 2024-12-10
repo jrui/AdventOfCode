@@ -12,7 +12,9 @@ else
 
 
 function run() {
-    return readFileSync('./`echo $DIR`/input/input1.txt', 'utf-8').split('\n')
+    let lines = readFileSync('./`echo $DIR`/input/example.txt', 'utf-8').split('\n');
+    
+    return lines;
 }
 
 export default run;
@@ -22,7 +24,9 @@ export default run;
 
 
 function run() {
-    return readFileSync('./`echo $DIR`/input/input2.txt', 'utf-8').split('\n')
+    let lines = readFileSync('./`echo $DIR`/input/example.txt', 'utf-8').split('\n');
+    
+    return lines;
 }
 
 export default run;
@@ -40,6 +44,7 @@ export {
   mkdir -p $DIR/input
   touch $DIR/input/input1.txt
   touch $DIR/input/input2.txt
+  touch $DIR/input/example.txt
   cd $DIR
   touch package.json
   echo "{
