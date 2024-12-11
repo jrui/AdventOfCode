@@ -24,7 +24,7 @@ __To start coding:__
 - :white_check_mark: - __Day 8__ - Resonant Collinearity
 - :white_check_mark: - __Day 9__ - Disk Fragmenter
 - :white_check_mark: - __Day 10__ - Hoof It
-- :black_square_button: - __Day 11__ -
+- :white_check_mark: - __Day 11__ - Plutonian Pebbles
 - :black_square_button: - __Day 12__ -
 - :black_square_button: - __Day 13__ -
 - :black_square_button: - __Day 14__ -
