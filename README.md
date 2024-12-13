@@ -26,7 +26,7 @@ __To start coding:__
 - :white_check_mark: - __Day 10__ - Hoof It
 - :white_check_mark: - __Day 11__ - Plutonian Pebbles
 - :ballot_box_with_check: - __Day 12__ - Garden Groups
-- :black_square_button: - __Day 13__ -
+- :white_check_mark: - __Day 13__ - Claw Contraption
 - :black_square_button: - __Day 14__ -
 - :black_square_button: - __Day 15__ -
 - :black_square_button: - __Day 16__ -
