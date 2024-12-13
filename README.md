@@ -25,7 +25,7 @@ __To start coding:__
 - :white_check_mark: - __Day 9__ - Disk Fragmenter
 - :white_check_mark: - __Day 10__ - Hoof It
 - :white_check_mark: - __Day 11__ - Plutonian Pebbles
-- :black_square_button: - __Day 12__ -
+- :ballot_box_with_check: - __Day 12__ - Garden Groups
 - :black_square_button: - __Day 13__ -
 - :black_square_button: - __Day 14__ -
 - :black_square_button: - __Day 15__ -
